@@ -1,0 +1,8 @@
+candidate,score,recommendation,reason
+sample_resume,80.67,Recommended for Interview,"**Assessment:**
+
+**Strengths:** The candidate has direct experience with Python, AWS, Docker, and Git, which aligns well with the job description. Additionally, their background in backend systems, REST APIs, and cloud deployment suggests a strong foundation for the role.
+
+**Missing Skills:** None explicitly mentioned in the job description are missing from the resume. However, it would be beneficial to see experience with specific AWS services, container orchestration tools, or testing frameworks to further enhance their candidacy.
+
+**Recommendation:** Based on the provided information, this candidate appears to be a strong fit for the Software Engineer position. It is recommended to proceed with an interview to further assess their technical skills, problem-solving abilities, and cultural fit."

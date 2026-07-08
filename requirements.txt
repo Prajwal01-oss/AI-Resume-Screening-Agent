@@ -1,0 +1,10 @@
+openai
+sentence-transformers
+scikit-learn
+pandas
+numpy
+pymupdf
+python-docx
+python-dotenv
+streamlit
+plotly
