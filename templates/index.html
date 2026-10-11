@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Resume Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;600&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#eef1f7;--card:#fff;--ink:#0f1a2e;--mute:#5b667a;--line:#dde2ec;--ac:#3b4cf0;--acs:#e6e9ff;--ok:#12a36b;--warn:#e8a317;--bad:#e5484d}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c111b;--card:#151c2b;--ink:#eaeefb;--mute:#97a3bb;--line:#26304a;--acs:#232b57;--ac:#7886ff}}
+:root[data-theme="dark"]{--bg:#0c111b;--card:#151c2b;--ink:#eaeefb;--mute:#97a3bb;--line:#26304a;--acs:#232b57;--ac:#7886ff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 'DM Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;margin:0}
+nav{display:flex;gap:6px;align-items:center;padding:12px 20px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5;overflow-x:auto}
+nav b{font:800 18px 'Bricolage Grotesque';margin-right:16px;white-space:nowrap}
+nav button{border:0;background:none;color:var(--mute);font:600 14px inherit;padding:8px 14px;border-radius:8px;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--acs);color:var(--ac)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+main{max-width:1180px;margin:0 auto;padding:20px}
+.view{display:none}.view.on{display:block}
+.split{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:20px;align-items:start}
+@media(max-width:860px){.split{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+label{display:block;font-weight:600;font-size:13px;margin:12px 0 4px}
+input,textarea,select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px}
+textarea{resize:vertical;min-height:84px}
+.btn{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:9px 16px;font:600 14px inherit;cursor:pointer}
+.btn.ghost{background:var(--acs);color:var(--ac)}
+.tpls{display:flex;gap:8px;margin-bottom:6px}.tpls button{flex:1}
+.paper-wrap{overflow-x:auto}
+.paper{background:#fff;color:#1a1a1a;min-width:520px;aspect-ratio:8.5/11;padding:34px 38px;font:12.5px/1.5 Georgia,serif;box-shadow:0 2px 18px rgba(15,26,46,.14);border-radius:4px}
+.paper h1{font:800 30px 'Bricolage Grotesque',sans-serif}.paper h3{font:700 12px 'DM Sans',sans-serif;border-bottom:1px solid #ccc;margin:14px 0 5px;padding-bottom:2px}
+.paper p{margin:0}.paper ul{margin:0;padding-left:16px}.paper .t{color:#555;font-size:14px}.paper small{color:#666}
+.t-modern header{background:#3b4cf0;color:#fff;margin:-34px -38px 8px;padding:28px 38px}.t-modern header .t,.t-modern header small{color:#dfe3ff}.t-modern h3{color:#3b4cf0;border-color:#3b4cf0}
+.t-bold{font-family:'DM Sans',sans-serif}.t-bold header{border-left:8px solid #12a36b;padding-left:14px}.t-bold h1{font-size:36px}.t-bold h3{border:0;background:#eef1f7;padding:3px 8px}
+.score{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.ring{width:130px;height:130px;border-radius:50%;display:grid;place-items:center;font:800 34px 'Bricolage Grotesque'}
+.ring i{display:grid;place-items:center;width:100px;height:100px;border-radius:50%;background:var(--card);font-style:normal}
+.chk{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.chk:last-child{border:0}
+.dot{width:10px;height:10px;border-radius:50%;margin-top:6px;flex:none}
+.kw{display:inline-block;margin:3px;padding:3px 10px;border-radius:99px;font-size:13px;background:var(--acs)}.kw.m{background:#fde4e4;color:#b42328}
+.board{display:grid;grid-template-columns:repeat(4,minmax(200px,1fr));gap:12px;overflow-x:auto}
+.col{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;min-height:240px}
+.job{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:8px}
+.job small{color:var(--mute)}.job div{display:flex;gap:4px;margin-top:6px}.job button{border:0;background:var(--acs);color:var(--ac);border-radius:6px;cursor:pointer;padding:2px 9px}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.empty{color:var(--mute);font-size:13px;margin-top:10px}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{border-bottom:1px solid var(--line);padding:10px;text-align:left;font-size:13px}
+th{color:var(--mute);font-weight:600}
+.badge-rec{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:600;background:#d1fae5;color:#065f46}
+.badge-rev{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:600;background:#fef3c7;color:#92400e}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .badge-rec{background:#064e3b;color:#a7f3d0}
+  :root:not([data-theme="light"]) .badge-rev{background:#78350f;color:#fde68a}
+}
+:root[data-theme="dark"] .badge-rec{background:#064e3b;color:#a7f3d0}
+:root[data-theme="dark"] .badge-rev{background:#78350f;color:#fde68a}
+@media print{nav,.panel,.tpls,.nonprint{display:none!important}main{padding:0}.split{display:block}.paper{box-shadow:none}}
+</style></head><body>
+<nav><b>Resume Studio</b>
+<button data-v="build" class="on">Builder</button><button data-v="ats">ATS score</button><button data-v="track">Applications</button><button data-v="cover">Cover letter</button><button data-v="screen">Batch Screener</button></nav>
+<main>
+<section class="view on" id="build"><div class="split">
+<div class="panel">
+<h2>Your resume</h2>
+<label>Template</label><div class="tpls"><button class="btn ghost" data-t="classic">Classic</button><button class="btn ghost" data-t="modern">Modern</button><button class="btn ghost" data-t="bold">Bold</button></div>
+<div class="row"><div><label>Name</label><input data-k="name"></div><div><label>Job title</label><input data-k="title"></div></div>
+<div class="row"><div><label>Email</label><input data-k="email"></div><div><label>Phone</label><input data-k="phone"></div></div>
+<label>Summary</label><textarea data-k="summary"></textarea>
+<label>Experience (one bullet per line)</label><textarea data-k="exp" style="min-height:150px"></textarea>
+<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+  <button class="btn ghost" id="imp">Strengthen weak bullets</button>
+  <button class="btn ghost" id="ai-bullets">AI Polish Bullets</button>
+</div>
+<label>Skills (comma separated)</label><textarea data-k="skills" style="min-height:56px"></textarea>
+<label>Education</label><input data-k="edu">
+<p style="margin-top:14px"><button class="btn" onclick="print()">Save as PDF</button></p>
+</div>
+<div class="paper-wrap"><div id="paper"></div></div>
+</div></section>
+
+<section class="view" id="ats"><div class="split">
+<div class="panel"><h2>Job description</h2><p class="empty">Paste the posting. Keywords from it are matched against your resume.</p>
+<textarea data-k="jd" style="min-height:300px"></textarea></div>
+<div class="panel"><div class="score"><div class="ring" id="ring"><i id="num">0</i></div><div><h2 id="verdict"></h2><p class="empty" id="sub"></p></div></div>
+<div id="checks" style="margin-top:12px"></div>
+<h3 style="margin-top:14px">Keywords</h3><div id="kws"></div>
+<div style="margin-top:16px;border-top:1px solid var(--line);padding-top:14px">
+  <button class="btn ghost" id="ai-review-btn" style="width:100%">Get AI Recruiter Insights</button>
+  <div id="ai-review-output" style="margin-top:10px;font-size:13px;line-height:1.5;display:none;background:var(--bg);padding:12px;border-radius:8px;border:1px solid var(--line);white-space:pre-wrap;"></div>
+</div>
+</div>
+</div></section>
+
+<section class="view" id="track"><div class="panel nonprint" style="margin-bottom:14px"><div class="row" style="align-items:end"><div><label>Company</label><input id="jc"></div><div><label>Role</label><input id="jr"></div><button class="btn" id="addj" style="flex:none">Add application</button></div></div>
+<div class="board" id="board"></div></section>
+
+<section class="view" id="cover"><div class="split">
+<div class="panel"><h2>Cover letter</h2><label>Company</label><input id="cc"><label>Role</label><input id="cr"><label>Hiring manager</label><input id="cm" placeholder="Hiring team">
+<div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+  <button class="btn" id="gen">Write draft</button>
+  <button class="btn ghost" id="ai-cover">AI Tailored Draft</button>
+</div>
+</div>
+<div class="panel"><textarea id="cl" style="min-height:420px" placeholder="Fill in the company and role, then choose Write draft."></textarea></div>
+</div></section>
+
+<section class="view" id="screen"><div class="split">
+<div class="panel">
+<h2>Batch Resume Screener</h2>
+<p class="empty">Compare multiple resumes against a job description using AI similarity embeddings and LLM reasoning.</p>
+<form id="screener-form">
+  <label for="batch_jd">Job description</label>
+  <textarea id="batch_jd" name="job_description" style="min-height:140px">Software Engineer with Python, AWS, Docker, and Git</textarea>
+  <label for="batch_files">Upload resumes (.pdf, .docx, .txt, .md)</label>
+  <input id="batch_files" name="files" type="file" multiple accept=".pdf,.docx,.txt,.md" style="margin-top:6px">
+  <p style="margin-top:14px"><button class="btn" type="submit" id="btn-screen">Analyze Resumes</button></p>
+</form>
+</div>
+<div class="panel">
+<h2>Ranked Candidates</h2>
+<div id="screener-results"><p class="empty">Upload resumes and click Analyze to view ranked candidate matches.</p></div>
+</div>
+</div></section>
+</main>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let S={tpl:'classic',name:'Aarav Shetty',title:'Frontend Engineer',email:'aarav@mail.com',phone:'+91 98000 00000',
+summary:'Frontend engineer with 3 years of experience building fast, accessible web apps in React and TypeScript. Focused on design systems and measurable product impact.',
+exp:'Built a design system used by 6 product teams, cutting UI build time by 40%\nLed migration of a legacy dashboard to React, improving load speed by 55%\nResponsible for fixing bugs and helping with releases\nMentored 4 junior developers and ran weekly code reviews',
+skills:'React, TypeScript, JavaScript, CSS, Accessibility, Testing, Figma, Node.js, GraphQL',edu:'B.E. Computer Science, 2022',jd:'',jobs:[]};
+try{Object.assign(S,JSON.parse(localStorage.getItem('rs')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('rs',JSON.stringify(S))}catch(e){}};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const bullets=()=>S.exp.split('\n').map(l=>l.replace(/^[\s•\-*]+/,'').trim()).filter(Boolean);
+const VERBS='built led created designed developed improved reduced increased launched managed mentored migrated optimized delivered drove implemented automated analyzed shipped scaled owned negotiated established streamlined architected'.split(' ');
+const STOP=new Set('with that this from have will your their about which they into more than also able work team role must such been being years year experience skills strong ability including other using across within'.split(' '));
+function paper(){const b=bullets();$('#paper').innerHTML=`<div class="paper t-${S.tpl}"><header><h1>${esc(S.name)}</h1><p class="t">${esc(S.title)}</p><small>${esc(S.email)} · ${esc(S.phone)}</small></header>
+<h3>Summary</h3><p>${esc(S.summary)}</p><h3>Experience</h3><ul>${b.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>
+<h3>Skills</h3><p>${esc(S.skills)}</p><h3>Education</h3><p>${esc(S.edu)}</p></div>`;$$('.tpls button').forEach(x=>x.style.outline=x.dataset.t===S.tpl?'2px solid var(--ac)':'none')}
+function kwList(){const f={};(S.jd.toLowerCase().match(/[a-z][a-z+#.]{3,}/g)||[]).forEach(w=>{if(!STOP.has(w))f[w]=(f[w]||0)+1});return Object.entries(f).sort((a,b)=>b[1]-a[1]).slice(0,14).map(x=>x[0])}
+function ats(){const b=bullets(),words=S.summary.split(/\s+/).filter(Boolean).length,full=(S.summary+' '+S.exp+' '+S.skills+' '+S.title).toLowerCase();
+const verbs=b.filter(x=>VERBS.includes(x.split(' ')[0].toLowerCase())).length,nums=b.filter(x=>/\d/.test(x)).length,sk=S.skills.split(',').filter(x=>x.trim()).length;
+const kws=kwList(),hit=kws.filter(k=>full.includes(k));
+const C=[
+['Contact details',15,S.email.includes('@')&&S.phone.length>6?1:0.3,'Add a valid email and phone number.'],
+['Summary length',15,words>=25&&words<=70?1:.5,`Your summary is ${words} words. Aim for 25 to 70.`],
+['Action verbs',20,b.length?verbs/b.length:0,`${verbs} of ${b.length} bullets start with a strong verb such as Built or Led.`],
+['Measurable results',20,b.length?Math.min(1,nums/b.length/.5):0,`${nums} of ${b.length} bullets include a number. Aim for at least half.`],
+['Skills section',10,Math.min(1,sk/8),`${sk} skills listed. Aim for 8 or more.`]];
+if(kws.length)C.push(['Job keywords',20,hit.length/kws.length,`Matched ${hit.length} of ${kws.length} keywords from the posting.`]);
+const tot=C.reduce((a,c)=>a+c[1],0),got=C.reduce((a,c)=>a+c[1]*c[2],0),sc=Math.round(got/tot*100),col=sc>=80?'var(--ok)':sc>=60?'var(--warn)':'var(--bad)';
+$('#ring').style.background=`conic-gradient(${col} ${sc*3.6}deg,var(--line) 0)`;$('#num').textContent=sc;
+$('#verdict').textContent=sc>=80?'Ready to send':sc>=60?'Good, with gaps':'Needs work';
+$('#sub').textContent=kws.length?'Scored on resume quality and job match.':'Paste a job description to add keyword matching.';
+$('#checks').innerHTML=C.map(c=>`<div class="chk"><span class="dot" style="background:${c[2]>=.8?'var(--ok)':c[2]>=.5?'var(--warn)':'var(--bad)'}"></span><div><b>${c[0]}</b><br><span class="empty" style="margin:0">${c[3]}</span></div></div>`).join('');
+$('#kws').innerHTML=kws.length?kws.map(k=>`<span class="kw ${full.includes(k)?'':'m'}">${esc(k)}</span>`).join(''):'<p class="empty">No keywords yet.</p>'}
+function board(){const cols=['Saved','Applied','Interview','Offer'];$('#board').innerHTML=cols.map((c,i)=>{const js=S.jobs.filter(j=>j.st===i);
+return `<div class="col"><h3>${c} (${js.length})</h3>${js.map(j=>`<div class="job"><b>${esc(j.role)}</b><br><small>${esc(j.co)}</small><div>${i>0?`<button data-m="${j.id}" data-d="-1" aria-label="Move back">‹</button>`:''}${i<3?`<button data-m="${j.id}" data-d="1" aria-label="Move forward">›</button>`:''}<button data-x="${j.id}" aria-label="Delete">×</button></div></div>`).join('')||'<p class="empty">Nothing here yet.</p>'}</div>`}).join('')}
+$$('[data-k]').forEach(el=>{el.value=S[el.dataset.k]||'';el.oninput=()=>{S[el.dataset.k]=el.value;save();paper();ats()}});
+$$('.tpls button').forEach(b=>b.onclick=()=>{S.tpl=b.dataset.t;save();paper()});
+$$('nav button').forEach(b=>b.onclick=()=>{$$('nav button').forEach(x=>x.classList.toggle('on',x===b));$$('.view').forEach(v=>v.classList.toggle('on',v.id===b.dataset.v))});
+$('#imp').onclick=()=>{S.exp=bullets().map(x=>{if(VERBS.includes(x.split(' ')[0].toLowerCase()))return x;
+return x.replace(/^(responsible for|helped with|worked on|in charge of)\s*/i,'').replace(/^./,c=>'Delivered '+c.toLowerCase())}).join('\n');$('[data-k=exp]').value=S.exp;save();paper();ats()};
+$('#addj').onclick=()=>{const co=$('#jc').value.trim(),r=$('#jr').value.trim();if(!co||!r)return;S.jobs.push({id:Date.now(),co,role:r,st:0});$('#jc').value=$('#jr').value='';save();board()};
+$('#board').onclick=e=>{const t=e.target,j=S.jobs.find(x=>x.id==(t.dataset.m||t.dataset.x));if(!j)return;
+if(t.dataset.x)S.jobs=S.jobs.filter(x=>x!==j);else j.st+=+t.dataset.d;save();board()};
+$('#gen').onclick=()=>{const co=$('#cc').value||'your company',r=$('#cr').value||S.title,m=$('#cm').value||'Hiring team',b=bullets();
+$('#cl').value=`Dear ${m},\n\nI'm excited to apply for the ${r} role at ${co}. ${S.summary}\n\nA few things I'd bring to the team:\n- ${b.slice(0,3).join('\n- ')}\n\nMy core skills include ${S.skills.split(',').slice(0,5).join(', ').trim()}, and I'd welcome the chance to talk about how they fit ${co}'s goals.\n\nThank you for your time,\n${S.name}\n${S.email} · ${S.phone}`};
+
+// Batch Screener form handler
+const screenerForm = document.getElementById('screener-form');
+if (screenerForm) {
+  screenerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const resultsContainer = document.getElementById('screener-results');
+    const submitBtn = document.getElementById('btn-screen');
+    const jdVal = document.getElementById('batch_jd').value;
+    const fileInput = document.getElementById('batch_files');
+
+    if (!jdVal.trim()) {
+      resultsContainer.innerHTML = '<p style="color:var(--bad);">Please enter a job description.</p>';
+      return;
+    }
+    if (!fileInput.files.length) {
+      resultsContainer.innerHTML = '<p style="color:var(--bad);">Please select at least one resume file to upload.</p>';
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('job_description', jdVal);
+    Array.from(fileInput.files).forEach(f => formData.append('files', f));
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Analyzing...';
+    resultsContainer.innerHTML = '<p class="empty">Analyzing resumes with embeddings & LLM...</p>';
+
+    try {
+      const resp = await fetch('/api/analyze', { method: 'POST', body: formData });
+      const payload = await resp.json();
+      if (!resp.ok) {
+        resultsContainer.innerHTML = `<p style="color:var(--bad);">${esc(payload.detail || 'An error occurred during analysis.')}</p>`;
+        return;
+      }
+      if (!payload.results || !payload.results.length) {
+        resultsContainer.innerHTML = '<p class="empty">No results returned.</p>';
+        return;
+      }
+
+      const rows = payload.results.map(item => `
+        <tr>
+          <td><b>${esc(item.candidate)}</b></td>
+          <td><b>${esc(item.score)}%</b></td>
+          <td><span class="${item.score >= 75 ? 'badge-rec' : 'badge-rev'}">${esc(item.recommendation)}</span></td>
+          <td><small>${esc(item.reason)}</small></td>
+        </tr>
+      `).join('');
+
+      resultsContainer.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Candidate</th>
+              <th>Score</th>
+              <th>Recommendation</th>
+              <th>Reasoning</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      `;
+    } catch (err) {
+      resultsContainer.innerHTML = `<p style="color:var(--bad);">Network or server error: ${esc(err.message)}</p>`;
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Analyze Resumes';
+    }
+  });
+}
+
+// AI Bullet Enhancement
+const aiBBtn = $('#ai-bullets');
+if (aiBBtn) {
+  aiBBtn.onclick = async () => {
+    if (!S.exp.trim()) {
+      alert('Please enter experience bullets first.');
+      return;
+    }
+    const orig = aiBBtn.textContent;
+    aiBBtn.disabled = true;
+    aiBBtn.textContent = 'Polishing...';
+    try {
+      const resp = await fetch('/api/ai/improve-bullets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bullets: S.exp })
+      });
+      const data = await resp.json();
+      if (resp.ok && data.improved) {
+        S.exp = data.improved;
+        $('[data-k=exp]').value = S.exp;
+        save(); paper(); ats();
+      } else {
+        alert(data.detail || 'Could not improve bullets via AI. Check GROQ_API_KEY.');
+      }
+    } catch (e) {
+      alert('AI service error: ' + e.message);
+    } finally {
+      aiBBtn.disabled = false;
+      aiBBtn.textContent = orig;
+    }
+  };
+}
+
+// AI Cover Letter Draft
+const aiCBtn = $('#ai-cover');
+if (aiCBtn) {
+  aiCBtn.onclick = async () => {
+    const co = $('#cc').value.trim() || 'your company';
+    const r = $('#cr').value.trim() || S.title;
+    const m = $('#cm').value.trim() || 'Hiring team';
+    const orig = aiCBtn.textContent;
+    aiCBtn.disabled = true;
+    aiCBtn.textContent = 'Drafting...';
+    try {
+      const resp = await fetch('/api/ai/cover-letter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          company: co,
+          role: r,
+          manager: m,
+          summary: S.summary,
+          bullets: S.exp,
+          skills: S.skills
+        })
+      });
+      const data = await resp.json();
+      if (resp.ok && data.cover_letter) {
+        $('#cl').value = data.cover_letter;
+      } else {
+        $('#gen').click();
+        alert(data.detail || 'Could not generate with AI. Generated template draft instead.');
+      }
+    } catch (e) {
+      $('#gen').click();
+    } finally {
+      aiCBtn.disabled = false;
+      aiCBtn.textContent = orig;
+    }
+  };
+}
+
+// AI ATS Recruiter Insights
+const aiRBtn = $('#ai-review-btn');
+const aiROut = $('#ai-review-output');
+if (aiRBtn && aiROut) {
+  aiRBtn.onclick = async () => {
+    if (!S.jd.trim()) {
+      alert('Please paste a job description first.');
+      return;
+    }
+    const resumeText = `${S.name} - ${S.title}\n${S.summary}\n\nExperience:\n${S.exp}\n\nSkills:\n${S.skills}\n\nEducation:\n${S.edu}`;
+    aiRBtn.disabled = true;
+    aiRBtn.textContent = 'Analyzing with AI...';
+    aiROut.style.display = 'block';
+    aiROut.textContent = 'Evaluating resume match with LLaMA 3.3...';
+    try {
+      const resp = await fetch('/api/ai/review-ats', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ job_description: S.jd, resume_text: resumeText })
+      });
+      const data = await resp.json();
+      if (resp.ok && data.review) {
+        aiROut.textContent = data.review;
+      } else {
+        aiROut.textContent = data.detail || 'Could not fetch AI review. Ensure GROQ_API_KEY is configured.';
+      }
+    } catch (e) {
+      aiROut.textContent = 'Error: ' + e.message;
+    } finally {
+      aiRBtn.disabled = false;
+      aiRBtn.textContent = 'Get AI Recruiter Insights';
+    }
+  };
+}
+
+paper();ats();board();
+</script></body></html>

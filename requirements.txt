@@ -1,10 +1,11 @@
 openai
-sentence-transformers
-scikit-learn
+groq
 pandas
 numpy
 pymupdf
 python-docx
 python-dotenv
-streamlit
+fastapi
+uvicorn
+python-multipart
 plotly
