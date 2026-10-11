@@ -19,7 +19,7 @@ from src.utils import ensure_directory
 
 load_dotenv(Path(__file__).resolve().parent / ".env")
 
-app = FastAPI(title="AI Resume Screening Agent")
+app = FastAPI(title="Resume Studio")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
